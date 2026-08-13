@@ -48,9 +48,15 @@ class RateCIResult:
 
 
 def derive_seed(*parts: str, base_seed: int = 0) -> int:
-    """Deterministically derive a 64-bit seed from stable string parts + base seed."""
+    """Deterministically derive a seed from stable string parts + base seed.
+
+    Kept to 48 bits so the value round-trips exactly through IEEE-754 doubles (below
+    ``Number.MAX_SAFE_INTEGER``); the explorer shows this seed verbatim as the
+    reproducibility anchor, so it must not lose precision in JSON. 48 bits is ample entropy
+    to seed the resampling RNG.
+    """
     joined = "\x1f".join((*parts, str(base_seed))).encode("utf-8")
-    return int.from_bytes(hashlib.blake2b(joined, digest_size=8).digest(), "big")
+    return int.from_bytes(hashlib.blake2b(joined, digest_size=6).digest(), "big")
 
 
 def _percentile_ci(numerator: int, denominator: int, seed: int, cfg: BootstrapConfig) -> tuple[float, float]:
