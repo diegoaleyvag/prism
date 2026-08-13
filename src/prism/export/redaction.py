@@ -21,7 +21,8 @@ BANNED_NAME_TOKENS: frozenset[str] = frozenset(
     }
 )
 
-_TOKEN_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+_WORD_RE = re.compile(r"[a-z0-9]+")
+_COMPOUND_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)+")
 
 EXCERPT_MAX = 240
 
@@ -38,8 +39,12 @@ def redact_text(text: str, max_len: int = EXCERPT_MAX) -> str:
     return collapsed[: max_len - 1].rstrip() + "…"
 
 
-def _tokens(text: str) -> list[str]:
-    return _TOKEN_RE.findall(text.lower())
+def _tokens(text: str) -> set[str]:
+    """Whole words plus hyphenated compounds, so both ``gpt`` and ``command-r`` are caught."""
+    lowered = text.lower()
+    parts: set[str] = set(_WORD_RE.findall(lowered))
+    parts.update(_COMPOUND_RE.findall(lowered))
+    return parts
 
 
 def find_provider_names(obj: Any) -> list[str]:
