@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "collection": "five-decisions",
+  "id": "prism",
+  "title": "Prism",
+  "decision": "When is a model good enough?",
+  "learningOrigin": "2026-05",
+  "buildStarted": "2026-08-13",
+  "status": "building",
+  "summary": "A reproducible workbench for evaluating task-specific model tradeoffs.",
+  "capabilities": ["synthetic evaluations", "reproducible metrics", "static result explorer"],
+  "evidence": [],
+  "links": {
+    "repository": null,
+    "demo": null,
+    "methodology": null
+  }
+}
