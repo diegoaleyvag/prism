@@ -1,0 +1,60 @@
+{
+  "case_digest": "sha256:7a1e119975422c7b8e0238e64da40fa503b1e2e925c7f01c754f2aadf2237632",
+  "case_id": "se-004",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "item_count": 3,
+      "items": [
+        "cedar plank",
+        "brass hinge",
+        "wax cloth"
+      ],
+      "order_id": "BX-11"
+    },
+    "family": "structured_extraction",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "item_count": {
+            "type": "integer"
+          },
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id",
+          "items",
+          "item_count"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Extract the order and its line items as JSON: 'Order BX-11 contains: cedar plank, brass hinge, wax cloth.'",
+    "tags": [
+      "array-field"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

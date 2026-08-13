@@ -1,0 +1,52 @@
+{
+  "case_digest": "sha256:661b5345b8137924b708f466cdf35a9680aafb612b65a94b0b09e38262ed6656",
+  "case_id": "tb-001",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "arguments": {
+        "from_unit": "gal_us",
+        "quantity": 3.5,
+        "to_unit": "L"
+      },
+      "tool_name": "convert_units"
+    },
+    "family": "tool_selection",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "arguments": {
+            "type": "object"
+          },
+          "tool_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool_name",
+          "arguments"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Available tools: convert_units(quantity, from_unit, to_unit); lookup_shipment(shipment_id); schedule_reminder(text, time); no_tool_needed(answer). Choose exactly one, or return tool_name 'none' with an 'action' if the request is under-specified.\nRequest: How many liters is 3.5 US gallons?",
+    "tags": [
+      "unit-conversion"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

@@ -1,0 +1,65 @@
+{
+  "case_digest": "sha256:cc01bf6d5e1c8bdd7724d961d5c317bf98976d4ea24684f881d3d7be84b43d27",
+  "case_id": "cr-006",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [
+      "User: The depot opens at 7am and closes at 9pm.",
+      "Assistant: Understood."
+    ],
+    "expected_output": {
+      "answer": "7am",
+      "contradiction_detected": false,
+      "current_value": "7am"
+    },
+    "family": "context_retention",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "contradiction_detected": {
+            "type": "boolean"
+          },
+          "current_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "superseded_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "answer",
+          "contradiction_detected",
+          "current_value"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "When does the depot open?",
+    "tags": [
+      "no-contradiction-control"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

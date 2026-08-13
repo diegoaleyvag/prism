@@ -1,0 +1,67 @@
+{
+  "case_digest": "sha256:135235469cf01b07b601f7b6ce4fa33f9c43632582cc6607ab2f6ceb5bd75582",
+  "case_id": "se-002",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "confidence": "low",
+      "order_id": "KP-2290",
+      "recipient": "Tomas Fuentes",
+      "weight_kg": null
+    },
+    "family": "structured_extraction",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "confidence": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          },
+          "recipient": {
+            "type": "string"
+          },
+          "weight_kg": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "order_id",
+          "recipient",
+          "weight_kg",
+          "confidence"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Extract the fields as JSON. If a value is illegible, emit null rather than guessing. Note: 'Order KP-2290 for Tomas Fuentes, weight ~?? kg (smudged).'",
+    "tags": [
+      "nullable",
+      "no-hallucination"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

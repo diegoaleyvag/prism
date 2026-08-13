@@ -1,0 +1,74 @@
+{
+  "case_digest": "sha256:f7dc46640017585db0136f2921585b0cd947567def1c5a766238d6ae227af1f7",
+  "case_id": "se-003",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "customer": {
+        "name": "Ada Okonkwo",
+        "tier": "gold"
+      },
+      "invoice_id": "INV-5561",
+      "total_cents": 48250
+    },
+    "family": "structured_extraction",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "customer": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "tier": {
+                "enum": [
+                  "standard",
+                  "silver",
+                  "gold"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "tier"
+            ],
+            "type": "object"
+          },
+          "invoice_id": {
+            "type": "string"
+          },
+          "total_cents": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "invoice_id",
+          "customer",
+          "total_cents"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Extract the invoice as JSON with a nested customer object: 'Invoice INV-5561 \u2014 customer Ada Okonkwo (gold tier) \u2014 total 48250 cents.'",
+    "tags": [
+      "nested-object"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

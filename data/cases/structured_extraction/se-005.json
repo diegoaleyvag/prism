@@ -1,0 +1,64 @@
+{
+  "case_digest": "sha256:0e88573678802f79bbfeb35590459b5f63320d48ead1be3c7186f40f0f531e36",
+  "case_id": "se-005",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "priority": "high",
+      "status": "open",
+      "ticket_id": "T-908"
+    },
+    "family": "structured_extraction",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "priority": {
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "open",
+              "pending",
+              "closed"
+            ],
+            "type": "string"
+          },
+          "ticket_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id",
+          "priority",
+          "status"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Extract the support ticket as JSON: 'Ticket T-908 \u2014 priority high \u2014 currently open.'",
+    "tags": [
+      "enum-field"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

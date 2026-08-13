@@ -1,0 +1,67 @@
+{
+  "case_digest": "sha256:dcec10723eaae6d8f4819e1f2f17c3a26b992713dcd65fe61c33dc668187c897",
+  "case_id": "cr-002",
+  "payload": {
+    "behavior_class": "should_escalate",
+    "context": [
+      "User: The sample weighs 40 g.",
+      "Assistant: Noted, 40 g.",
+      "User: The sample weighs 60 g."
+    ],
+    "expected_output": {
+      "answer": "40 g and 60 g conflict; needs clarification",
+      "contradiction_detected": true,
+      "current_value": null
+    },
+    "family": "context_retention",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "contradiction_detected": {
+            "type": "boolean"
+          },
+          "current_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "superseded_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "answer",
+          "contradiction_detected",
+          "current_value"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "What does the sample weigh?",
+    "tags": [
+      "unresolved-conflict",
+      "escalate"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

@@ -1,0 +1,53 @@
+{
+  "case_digest": "sha256:efca637c9f4100303355c06a1ecef2e36de3949477e49012a9f4e4ace197f54d",
+  "case_id": "tb-006",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "arguments": {
+        "from_unit": "kg",
+        "quantity": 2,
+        "to_unit": "lb"
+      },
+      "tool_name": "convert_units"
+    },
+    "family": "tool_selection",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "arguments": {
+            "type": "object"
+          },
+          "tool_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool_name",
+          "arguments"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Available tools: convert_units(quantity, from_unit, to_unit); lookup_shipment(shipment_id); schedule_reminder(text, time); no_tool_needed(answer). Choose exactly one, or return tool_name 'none' with an 'action' if the request is under-specified.\nRequest: Using only offline tools, convert 2 kg to pounds.",
+    "tags": [
+      "disambiguation",
+      "constraint"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

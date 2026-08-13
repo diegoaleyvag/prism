@@ -1,0 +1,59 @@
+{
+  "case_digest": "sha256:7d330db6ff5ea73dbe220c4528790d746b42af1c480ec342c1c40674485172c6",
+  "case_id": "se-006",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "booking_ref": "RM-77",
+      "check_in": "2031-06-01",
+      "nights": 4,
+      "refundable": true
+    },
+    "family": "structured_extraction",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "booking_ref": {
+            "type": "string"
+          },
+          "check_in": {
+            "type": "string"
+          },
+          "nights": {
+            "type": "integer"
+          },
+          "refundable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "booking_ref",
+          "check_in",
+          "nights",
+          "refundable"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Extract the booking as JSON; normalize the date to ISO (YYYY-MM-DD): 'Booking RM-77, check-in June 1 2031, 4 nights, refundable.'",
+    "tags": [
+      "boolean",
+      "date-normalization"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

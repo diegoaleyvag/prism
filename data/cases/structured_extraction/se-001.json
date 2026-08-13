@@ -1,0 +1,73 @@
+{
+  "case_digest": "sha256:4e0ade8ebb9cd8aa8501d07a26a8d57ab8761e325065811ed5dc19a1ba44f16c",
+  "case_id": "se-001",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "carton_count": 3,
+      "courier_ref": "bluefin-echo",
+      "destination": "88 Larkspur Way, Onderin",
+      "dispatch_ts": "2031-03-02T08:14:00",
+      "order_id": "ZQ-7741",
+      "recipient": "Marisol Vega",
+      "weight_kg": 14.6
+    },
+    "family": "structured_extraction",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "carton_count": {
+            "type": "integer"
+          },
+          "courier_ref": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "dispatch_ts": {
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          },
+          "recipient": {
+            "type": "string"
+          },
+          "weight_kg": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "order_id",
+          "recipient",
+          "dispatch_ts",
+          "carton_count",
+          "weight_kg",
+          "destination",
+          "courier_ref"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Extract the dispatch fields as JSON from this note: 'Dispatch log \u2014 Order #ZQ-7741 for Marisol Vega left the Cedar Hollow depot at 08:14 on 2031-03-02, three cartons, 14.6 kg total, to 88 Larkspur Way, Onderin. Courier ref: bluefin-echo.'",
+    "tags": [
+      "flat-object"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

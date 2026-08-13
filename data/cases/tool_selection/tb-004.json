@@ -1,0 +1,51 @@
+{
+  "case_digest": "sha256:b3075a330329d2f253731e18d72cbd2d00203125362a7b2b3784a405903e71ad",
+  "case_id": "tb-004",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [],
+    "expected_output": {
+      "arguments": {
+        "text": "call the depot",
+        "time": "tomorrow 09:00"
+      },
+      "tool_name": "schedule_reminder"
+    },
+    "family": "tool_selection",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "arguments": {
+            "type": "object"
+          },
+          "tool_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool_name",
+          "arguments"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Available tools: convert_units(quantity, from_unit, to_unit); lookup_shipment(shipment_id); schedule_reminder(text, time); no_tool_needed(answer). Choose exactly one, or return tool_name 'none' with an 'action' if the request is under-specified.\nRequest: Set a reminder to call the depot tomorrow at 9am.",
+    "tags": [
+      "distractor"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}

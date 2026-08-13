@@ -1,0 +1,67 @@
+{
+  "case_digest": "sha256:73e8bd6eb10d55338aec65b0b43c671abd0080f9db4bd004f8d89ccceb2f0409",
+  "case_id": "cr-001",
+  "payload": {
+    "behavior_class": "normal",
+    "context": [
+      "User: Book the Larch room at 3.",
+      "Assistant: Booked the Larch room at 3.",
+      "User: Actually make it the Fennel room, same time."
+    ],
+    "expected_output": {
+      "answer": "Fennel room at 3",
+      "contradiction_detected": false,
+      "current_value": "Fennel",
+      "superseded_value": "Larch"
+    },
+    "family": "context_retention",
+    "grading": {
+      "options": {},
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "contradiction_detected": {
+            "type": "boolean"
+          },
+          "current_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "superseded_value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "answer",
+          "contradiction_detected",
+          "current_value"
+        ],
+        "type": "object"
+      }
+    },
+    "prompt": "Which room is booked, and did the choice change?",
+    "tags": [
+      "supersession"
+    ]
+  },
+  "provenance": {
+    "created_at": "2026-08-13T00:00:00Z",
+    "generator": "prism-generator/0.1.0",
+    "license": "CC-BY-4.0",
+    "notes": null,
+    "origin_note": "Original invented content; not derived from any exam or third-party source.",
+    "owner": "atomicz",
+    "source": "synthetic:prism-generator",
+    "synthetic": true
+  },
+  "review_label": "owner_reviewed",
+  "schema_version": "taskcase/v1"
+}
