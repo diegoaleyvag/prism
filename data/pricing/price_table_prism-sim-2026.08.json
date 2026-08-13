@@ -1,0 +1,23 @@
+{
+  "content_hash": "sha256:b4a33e753f5a6df193412ca30ef3b7bc4724df88cd1f6bec388d5d0136e6e2eb",
+  "currency": "USD",
+  "disclaimer": "SIMULATED prices for educational cost estimation only. NOT real provider pricing. NOT billed cost.",
+  "effective_date": "2026-08-01",
+  "entries": {
+    "deep-thinker": {
+      "input_price": "0.0030",
+      "notes": "synthetic slow/high-quality profile",
+      "output_price": "0.0120",
+      "unit": "per_1k_tokens"
+    },
+    "swift-lite": {
+      "input_price": "0.0002",
+      "notes": "synthetic fast/cheap profile",
+      "output_price": "0.0006",
+      "unit": "per_1k_tokens"
+    }
+  },
+  "price_table_id": "prism-sim-2026.08",
+  "schema_version": "pricetable/v1",
+  "simulated": true
+}

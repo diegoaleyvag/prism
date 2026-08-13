@@ -20,6 +20,10 @@ from prism.dataset.loader import load_cases
 from prism.dataset.profiles_gen import build_profiles, write_profiles
 from prism.engine.executor import ManifestInvalidError, execute_run
 from prism.engine.plan import build_default_manifest
+from prism.export.artifacts import build_artifacts, write_artifacts
+from prism.metrics.compute import compute_report, verify_reconciliation
+from prism.metrics.pricing import default_price_table, load_price_table
+from prism.models.enums import ReviewScope
 from prism.models.manifest import EvaluationManifest
 from prism.models.run_record import RunRecord, compute_record_id
 from prism.models.task_case import TaskCase
@@ -187,6 +191,92 @@ def verify(
         typer.echo(f"{'OK' if ok else 'FAILED'}: verified {checked} records")
     if not ok:
         raise typer.Exit(code=1)
+
+
+PriceTableOpt = Annotated[Path | None, typer.Option(help="Price table JSON; omitted uses the default.")]
+RunsDir = Annotated[Path, typer.Option(help="Runs root directory.")]
+ScopeOpt = Annotated[ReviewScope, typer.Option(help="Review scope for metrics.")]
+
+
+def _load_records(runs_dir: Path, manifest: EvaluationManifest) -> list[RunRecord]:
+    store = RecordStore(runs_dir)
+    run_dir = store.run_dir(manifest)
+    if not run_dir.exists():
+        raise typer.BadParameter(
+            f"no run found at {run_dir}; run `prism run {manifest.manifest_id}` first"
+        )
+    return list(store.iter_records(run_dir))
+
+
+@app.command()
+def metrics(
+    manifest_path: Annotated[Path, typer.Argument(help="Path to the manifest JSON.")],
+    runs: RunsDir = Path("runs"),
+    cases_dir: CasesDir = Path("data/cases"),
+    price_table: PriceTableOpt = None,
+    scope: ScopeOpt = ReviewScope.RELEASE,
+    out: Annotated[Path | None, typer.Option(help="Write the report JSON here.")] = None,
+    json_out: Annotated[bool, typer.Option("--json")] = False,
+) -> None:
+    """Compute the reconcilable metric report from persisted records."""
+    manifest = _load_manifest(manifest_path)
+    cases = load_cases(cases_dir)
+    records = _load_records(runs, manifest)
+    table = load_price_table(price_table) if price_table else default_price_table()
+    report = compute_report(records, cases, table, scope=scope)
+
+    problems = verify_reconciliation(report)
+    if problems:
+        for p in problems:
+            typer.echo(f"reconciliation: {p}", err=True)
+        raise typer.Exit(code=1)
+
+    if out is not None:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(report.model_dump_json(indent=2) + "\n", encoding="utf-8")
+
+    if json_out:
+        typer.echo(report.model_dump_json(indent=2))
+    else:
+        for prof in report.profiles:
+            ts = prof.aggregate.task_success
+            typer.echo(
+                f"{prof.profile_id}: success {ts.display} "
+                f"(ci_reliable={ts.ci_reliable}, flags={list(ts.ci_flags)}) "
+                f"cost/case=${prof.aggregate.cost.mean_usd:.6f} "
+                f"p90={prof.aggregate.latency.p90_ms:.0f}ms"
+            )
+        typer.echo(
+            f"scope={report.review_scope.value} excluded={report.excluded_count} "
+            f"reconciled=yes SIMULATED"
+        )
+
+
+@app.command()
+def export(
+    manifest_path: Annotated[Path, typer.Argument(help="Path to the manifest JSON.")],
+    runs: RunsDir = Path("runs"),
+    cases_dir: CasesDir = Path("data/cases"),
+    out: Annotated[Path, typer.Option(help="Artifact output directory.")] = Path("artifacts"),
+    price_table: PriceTableOpt = None,
+    scope: ScopeOpt = ReviewScope.RELEASE,
+) -> None:
+    """Compute metrics and write the redacted static artifact set for the explorer."""
+    manifest = _load_manifest(manifest_path)
+    cases = load_cases(cases_dir)
+    records = _load_records(runs, manifest)
+    table = load_price_table(price_table) if price_table else default_price_table()
+    report = compute_report(records, cases, table, scope=scope)
+
+    problems = verify_reconciliation(report)
+    if problems:
+        for p in problems:
+            typer.echo(f"reconciliation: {p}", err=True)
+        raise typer.Exit(code=1)
+
+    artifacts = build_artifacts(report, records, cases, table)
+    paths = write_artifacts(artifacts, out)
+    typer.echo(f"wrote {len(paths)} artifacts to {out} (SIMULATED, redacted)")
 
 
 dataset_app = typer.Typer(help="Regenerate synthetic dataset artifacts.", no_args_is_help=True)

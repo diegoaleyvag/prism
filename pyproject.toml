@@ -12,6 +12,7 @@ dependencies = [
     "pydantic>=2.9,<3",
     "polars>=1.9,<2",
     "duckdb>=1.1,<2",
+    "pyarrow>=17,<22",
     "numpy>=2.0,<3",
     "typer>=0.12,<1",
     "jsonschema>=4.23,<5",
