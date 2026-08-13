@@ -1,0 +1,38 @@
+# --- Prism defensive ignores ---------------------------------------------
+# Private certification question banks must NEVER enter Git. These live in
+# ~/Downloads and are only ever inspiration for broad categories. Belt and
+# suspenders: ignore by any plausible name/path even if copied into the repo.
+CCAR-*
+*CCAR*
+*preguntas*
+*preguntas_practica*
+Downloads/
+**/private/
+**/*.private.*
+
+# --- Generated evaluation artifacts ---------------------------------------
+# Run records are reproducible from locked code + manifest + fixtures, so they
+# are generated, not versioned (keep the directory via .gitkeep).
+/runs/*
+!/runs/.gitkeep
+/artifacts/*
+!/artifacts/.gitkeep
+
+# --- Python ---------------------------------------------------------------
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+build/
+dist/
+
+# --- Node / SvelteKit explorer --------------------------------------------
+node_modules/
+explorer/.svelte-kit/
+explorer/build/
+explorer/static/data/
+.DS_Store
