@@ -9,7 +9,7 @@ SIMULATED — no live provider.
 uv sync --frozen                                   # install locked deps
 uv run prism version                               # version + schema tags
 uv run prism validate manifests/example.manifest.json
-uv run prism run      manifests/example.manifest.json --seed 20260813 --out runs
+uv run prism run      manifests/example.manifest.json --out runs   # seed is pinned in the manifest
 uv run prism verify   runs/                         # recompute + check digests, read-only
 uv run prism metrics  manifests/example.manifest.json --runs runs
 uv run prism export   manifests/example.manifest.json --runs runs --out artifacts

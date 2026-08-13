@@ -39,12 +39,13 @@ Prerequisites: [`uv`](https://docs.astral.sh/uv/), Python 3.13, Node ≥ 22, `pn
 
 ```bash
 # 1. Backend — install locked deps, run the fixture evaluation, verify + report
+#    (the manifest pins its own seed, so runs are reproducible without a flag)
 uv sync --frozen
 uv run prism validate manifests/example.manifest.json
-uv run prism run      manifests/example.manifest.json --seed 20260813
+uv run prism run      manifests/example.manifest.json --out runs
 uv run prism verify   runs/
-uv run prism metrics  manifests/example.manifest.json
-uv run prism export   manifests/example.manifest.json --out artifacts
+uv run prism metrics  manifests/example.manifest.json --runs runs
+uv run prism export   manifests/example.manifest.json --runs runs --out artifacts
 
 # 2. Tests — unit, property, e2e and guardrails, fully offline
 uv run pytest
