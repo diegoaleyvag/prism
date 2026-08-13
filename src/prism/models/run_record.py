@@ -39,7 +39,11 @@ class RunnerIdentity(BaseModel):
 
 
 class Measurements(BaseModel):
-    """Observed measurements. All integers — no floats reach record identity."""
+    """Observed *physical* measurements. All integers — no floats reach record identity.
+
+    Cost is deliberately absent: it is a downstream, re-computable estimate derived from
+    these token counts and a separately versioned price table, never baked into the record.
+    """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -47,8 +51,6 @@ class Measurements(BaseModel):
     input_tokens: int = Field(ge=0)
     output_tokens: int = Field(ge=0)
     total_tokens: int = Field(ge=0)
-    cost_micro_usd: int = Field(ge=0)
-    """Estimated (simulated) cost in integer micro-USD. Never a billed amount."""
 
     @model_validator(mode="after")
     def _check_total(self) -> Self:
