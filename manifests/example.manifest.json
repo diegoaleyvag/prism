@@ -1,0 +1,138 @@
+{
+  "cases": [
+    {
+      "case_digest": "sha256:73e8bd6eb10d55338aec65b0b43c671abd0080f9db4bd004f8d89ccceb2f0409",
+      "case_id": "cr-001"
+    },
+    {
+      "case_digest": "sha256:dcec10723eaae6d8f4819e1f2f17c3a26b992713dcd65fe61c33dc668187c897",
+      "case_id": "cr-002"
+    },
+    {
+      "case_digest": "sha256:c5a23fd0aaf48a9fe228bffab81c2186d9a3eae0dfc3a5aa4144e45b989c2d5f",
+      "case_id": "cr-003"
+    },
+    {
+      "case_digest": "sha256:89ef8c5e363ecd746b199f36275eb9ca0b69cfadf654ec3e47e6ce3bd27408a0",
+      "case_id": "cr-004"
+    },
+    {
+      "case_digest": "sha256:669b8bfbda4285e2ab204e0932814a31701f7df5a262ce2a2e545fd519762ffb",
+      "case_id": "cr-005"
+    },
+    {
+      "case_digest": "sha256:cc01bf6d5e1c8bdd7724d961d5c317bf98976d4ea24684f881d3d7be84b43d27",
+      "case_id": "cr-006"
+    },
+    {
+      "case_digest": "sha256:4e0ade8ebb9cd8aa8501d07a26a8d57ab8761e325065811ed5dc19a1ba44f16c",
+      "case_id": "se-001"
+    },
+    {
+      "case_digest": "sha256:135235469cf01b07b601f7b6ce4fa33f9c43632582cc6607ab2f6ceb5bd75582",
+      "case_id": "se-002"
+    },
+    {
+      "case_digest": "sha256:f7dc46640017585db0136f2921585b0cd947567def1c5a766238d6ae227af1f7",
+      "case_id": "se-003"
+    },
+    {
+      "case_digest": "sha256:7a1e119975422c7b8e0238e64da40fa503b1e2e925c7f01c754f2aadf2237632",
+      "case_id": "se-004"
+    },
+    {
+      "case_digest": "sha256:0e88573678802f79bbfeb35590459b5f63320d48ead1be3c7186f40f0f531e36",
+      "case_id": "se-005"
+    },
+    {
+      "case_digest": "sha256:7d330db6ff5ea73dbe220c4528790d746b42af1c480ec342c1c40674485172c6",
+      "case_id": "se-006"
+    },
+    {
+      "case_digest": "sha256:185183bd5795e5bfc46a7671571c33dfdaf9a877ff00c57609adbcbfc32d52d6",
+      "case_id": "ss-001"
+    },
+    {
+      "case_digest": "sha256:55dfff5509af09555244cb709c00200944ed29f72167eb3f447c3be3faac6be2",
+      "case_id": "ss-002"
+    },
+    {
+      "case_digest": "sha256:eb1aa928f9cfb7f06e393412ad7efe220dcc487144fb6af9291aa941fd5814b7",
+      "case_id": "ss-003"
+    },
+    {
+      "case_digest": "sha256:4c4c9a360a55ca9256be06c3e9488c63ee9a0021667a4baa6b6d02bf2be960fb",
+      "case_id": "ss-004"
+    },
+    {
+      "case_digest": "sha256:2b05a783e7f74c3dbd982a51016ce6163fdddb3faf1e18d44a29ce4d2d1d8367",
+      "case_id": "ss-005"
+    },
+    {
+      "case_digest": "sha256:4384a9b024b3616dcb186fd7f5a6099b2fb78de4ab462b13fb12359fc57b32a3",
+      "case_id": "ss-006"
+    },
+    {
+      "case_digest": "sha256:661b5345b8137924b708f466cdf35a9680aafb612b65a94b0b09e38262ed6656",
+      "case_id": "tb-001"
+    },
+    {
+      "case_digest": "sha256:30bafd3ef03cc951ee87bac8a5cf7f50f5f309c006e4f1e03f5deb05063ba6d3",
+      "case_id": "tb-002"
+    },
+    {
+      "case_digest": "sha256:53f0b2cddecfa4f56519b2db13db7d983377e2ac41d72dfb916e4fbbb9d30318",
+      "case_id": "tb-003"
+    },
+    {
+      "case_digest": "sha256:b3075a330329d2f253731e18d72cbd2d00203125362a7b2b3784a405903e71ad",
+      "case_id": "tb-004"
+    },
+    {
+      "case_digest": "sha256:ba0c8222f28c052fbc40d3ab2d30237febcd8a8939e439ac80cdcd82256629c0",
+      "case_id": "tb-005"
+    },
+    {
+      "case_digest": "sha256:efca637c9f4100303355c06a1ecef2e36de3949477e49012a9f4e4ace197f54d",
+      "case_id": "tb-006"
+    }
+  ],
+  "created_by": "atomicz",
+  "description": "Deterministic fixture simulation across four task families. SIMULATED results \u2014 not a measurement of any named model or provider.",
+  "families": [
+    "structured_extraction",
+    "tool_selection",
+    "context_retention",
+    "safety_escalation"
+  ],
+  "manifest_digest": "sha256:af7b050fad9d7306472b3e4f08f56e000cbc0e0f414db4674da756e34e4e207e",
+  "manifest_id": "prism-foundation",
+  "manifest_version": "1.0.0",
+  "metrics": [
+    "task_success_rate",
+    "schema_validity_rate",
+    "correct_escalation_rate",
+    "over_refusal_rate",
+    "latency_ms",
+    "tokens",
+    "estimated_cost_usd",
+    "pareto"
+  ],
+  "runners": [
+    {
+      "profile": "deep-thinker",
+      "provider_ref": null,
+      "runner_kind": "fixture_replay",
+      "version_constraint": null
+    },
+    {
+      "profile": "swift-lite",
+      "provider_ref": null,
+      "runner_kind": "fixture_replay",
+      "version_constraint": null
+    }
+  ],
+  "schema_version": "manifest/v1",
+  "seed": 20260813,
+  "title": "Prism foundation evaluation (simulated)"
+}
