@@ -61,6 +61,11 @@ Everything after `uv sync` runs **offline** — no network, no provider calls.
 `build-explorer.mjs` deletes generated `runs`, `artifacts`, explorer data, and prior static
 output before regenerating the documented fixture run. The explorer prebuild rejects missing,
 stale, or additional artifact JSON rather than retaining a committed data fallback.
+For Vercel, the root `vercel.json` explicitly selects the Vite framework so this static explorer
+is not detected as a Python Function. Its install command fetches the pinned Linux `uv` 0.11.11
+binary, verifies its SHA-256, synchronizes the frozen Python environment, and installs the pinned
+explorer dependencies. The Vercel build command then runs `node build-explorer.mjs` and publishes
+only `explorer/build`.
 
 The explorer vendors the Five Decisions 1.0.0 portable contract under
 `explorer/static/five-decisions/`; its source version and SHA-256 values are recorded in that

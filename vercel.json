@@ -1,4 +1,8 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "mkdir -p \"$HOME/.local/bin\" && curl --fail --silent --show-error --location --output /tmp/uv.tar.gz https://releases.astral.sh/github/uv/releases/download/0.11.11/uv-x86_64-unknown-linux-gnu.tar.gz && echo 'a767848254391855c96df271e9ca8b7f72dd172d310460447853d25d907b9ae0  /tmp/uv.tar.gz' | sha256sum --check --status && tar -xzf /tmp/uv.tar.gz -C \"$HOME/.local/bin\" --strip-components=1 --no-same-owner && export PATH=\"$HOME/.local/bin:$PATH\" && uv sync --frozen && corepack enable && pnpm --dir explorer install --frozen-lockfile",
+  "buildCommand": "export PATH=\"$HOME/.local/bin:$PATH\" && node build-explorer.mjs",
   "outputDirectory": "explorer/build",
   "rewrites": [
     {
