@@ -18,5 +18,7 @@ tar -xzf "${archive_path}" -C "${UV_BIN_DIR}" --strip-components=1 --no-same-own
 
 export PATH="${UV_BIN_DIR}:${PATH}"
 uv sync --frozen
-corepack enable
-pnpm --dir explorer install --frozen-lockfile
+(
+  cd explorer
+  corepack pnpm@11.18.0 install --frozen-lockfile
+)
