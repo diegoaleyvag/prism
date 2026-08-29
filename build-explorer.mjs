@@ -51,4 +51,8 @@ if (artifactFiles.join('\n') !== [...requiredArtifacts].sort().join('\n')) {
 	process.exit(1);
 }
 
+// Do not rely on package-manager prebuild lifecycle hooks: Vercel's pnpm
+// invocation may not run them. The static import in $lib/data requires this
+// fail-closed copy before Vite starts module resolution.
+run('node', ['scripts/copy-artifacts.mjs'], join(root, 'explorer'));
 run('pnpm', ['run', 'build'], join(root, 'explorer'));
