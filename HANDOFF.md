@@ -41,8 +41,8 @@ cd .. && node build-explorer.mjs                    # clean generated run/artifa
 `build-explorer.mjs` is the reproducible clean-root bridge: it removes generated output, executes
 the documented fixture pipeline, requires exactly eight export artifacts, then builds the explorer.
 For remote static builds, `vercel.json` pins the project to Vite, bootstraps checksum-verified
-`uv` 0.11.11, installs frozen dependencies, runs this root build bridge, and exposes only
-`explorer/build`. It intentionally defines no Python Function entrypoint.
+`uv` 0.11.11 through `vercel-install.sh`, installs frozen dependencies, runs this root build
+bridge, and exposes only `explorer/build`. It intentionally defines no Python Function entrypoint.
 
 ## Data flow
 
