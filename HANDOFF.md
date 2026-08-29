@@ -18,6 +18,7 @@ uv run pytest                                       # 62 tests, fully offline
 uv run ruff check src/ tests/ && uv run mypy        # lint + types
 
 cd explorer && pnpm install && pnpm run build && pnpm test && pnpm run check:names
+cd .. && node build-explorer.mjs                    # clean generated run/artifact/static build
 ```
 
 ## Architecture (Python, `src/prism/`)
@@ -37,6 +38,8 @@ cd explorer && pnpm install && pnpm run build && pnpm test && pnpm run check:nam
 | `cli/` | Typer CLI (`validate/run/verify/metrics/export/digest/version/dataset build`). |
 
 `explorer/` — SvelteKit static app consuming the redacted artifacts (see `docs/adr/0003`).
+`build-explorer.mjs` is the reproducible clean-root bridge: it removes generated output, executes
+the documented fixture pipeline, requires exactly eight export artifacts, then builds the explorer.
 
 ## Data flow
 
@@ -67,7 +70,10 @@ un‑triggerable (including in CI) and imports no provider SDK.
 Everything in the repo is new (greenfield). Notable: `src/prism/**`, `data/cases/**` (24
 JSON), `data/pricing/**`, `profiles/**` (2 JSON), `manifests/example.manifest.json`,
 `tests/**`, `docs/**`, `explorer/**`, `portfolio.project.json`, `pyproject.toml`, `uv.lock`.
-Generated (gitignored): `runs/`, `artifacts/`, `explorer/static/data/`.
+Generated (gitignored): `runs/`, `artifacts/`, `explorer/static/data/`, `explorer/build/`.
+The explorer vendors a Five Decisions 1.0.0 contract snapshot under `static/five-decisions/`;
+`CONTRACT.md` records the source version and portable source hashes. `portfolio.project.json` is
+validated offline against the vendored portable schema by the guardrail suite.
 
 ## Known debt
 

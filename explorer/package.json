@@ -11,6 +11,7 @@
     "dev": "vite dev",
     "prebuild": "node scripts/copy-artifacts.mjs",
     "build": "vite build",
+    "build:clean": "node ../build-explorer.mjs",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

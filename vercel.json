@@ -1,0 +1,9 @@
+{
+  "outputDirectory": "explorer/build",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/200.html"
+    }
+  ]
+}

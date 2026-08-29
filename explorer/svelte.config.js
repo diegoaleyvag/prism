@@ -5,7 +5,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
 	preprocess: vitePreprocess(),
 	kit: {
-		adapter: adapter({ strict: true }),
+		adapter: adapter({ strict: true, fallback: '200.html' }),
 		paths: {
 			relative: true
 		}

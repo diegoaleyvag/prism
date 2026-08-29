@@ -1,37 +1,29 @@
+@import url('/five-decisions/five-decisions-shell.css');
+
 :root {
-	color-scheme: light dark;
-
-	/* Colorblind-safe categorical palette (Okabe–Ito). */
-	--color-series-1: #0072b2; /* blue */
-	--color-series-2: #e69f00; /* orange */
-	--color-series-3: #009e73; /* bluish green */
-	--color-series-4: #d55e00; /* vermillion */
-	--color-series-5: #cc79a7; /* reddish purple */
-	--color-series-6: #56b4e9; /* sky blue */
-
-	--color-good: #009e73;
-	--color-bad: #d55e00;
-	--color-neutral: #767676;
-
-	--color-bg: #ffffff;
-	--color-bg-raised: #f4f5f7;
-	--color-fg: #14161a;
-	--color-fg-muted: #4b4f57;
-	--color-border: #d6d9de;
-	--color-link: #0056a3;
-	--color-link-visited: #6f3d8f;
-
-	--color-banner-bg: #14161a;
-	--color-banner-fg: #ffe066;
-	--color-banner-border: #ffe066;
-
-	--focus-ring: 3px solid #0072b2;
-
-	--font-sans:
-		-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji';
-	--font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-
+	color-scheme: light;
+	--color-series-1: var(--fd-survey);
+	--color-series-2: var(--fd-signal);
+	--color-series-3: var(--fd-survey-ink);
+	--color-series-4: var(--fd-signal-ink);
+	--color-series-5: var(--fd-graphite-muted);
+	--color-series-6: var(--fd-survey);
+	--color-good: var(--fd-survey-ink);
+	--color-bad: var(--fd-signal-ink);
+	--color-neutral: var(--fd-graphite-muted);
+	--color-bg: var(--fd-field);
+	--color-bg-raised: var(--fd-field-raised);
+	--color-fg: var(--fd-graphite);
+	--color-fg-muted: var(--fd-graphite-muted);
+	--color-border: color-mix(in oklch, var(--fd-graphite) 28%, var(--fd-field));
+	--color-link: var(--fd-survey-ink);
+	--color-link-visited: var(--fd-survey-ink);
+	--color-banner-bg: var(--fd-graphite);
+	--color-banner-fg: var(--fd-field);
+	--color-banner-border: var(--fd-signal);
+	--focus-ring: 3px solid var(--fd-signal);
+	--font-sans: var(--fd-font-body);
+	--font-mono: var(--fd-font-mono);
 	--space-1: 0.25rem;
 	--space-2: 0.5rem;
 	--space-3: 0.75rem;
@@ -39,26 +31,7 @@
 	--space-5: 1.5rem;
 	--space-6: 2rem;
 	--space-8: 3rem;
-
-	--radius: 8px;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-bg: #0f1115;
-		--color-bg-raised: #1a1d23;
-		--color-fg: #e8e9ec;
-		--color-fg-muted: #b0b4bd;
-		--color-border: #2c3038;
-		--color-link: #7ec2ff;
-		--color-link-visited: #d9a8f0;
-
-		--color-banner-bg: #ffe066;
-		--color-banner-fg: #14161a;
-		--color-banner-border: #14161a;
-
-		--focus-ring: 3px solid #7ec2ff;
-	}
+	--radius: 4px;
 }
 
 * {
@@ -75,7 +48,7 @@ body {
 	background: var(--color-bg);
 	color: var(--color-fg);
 	font-family: var(--font-sans);
-	line-height: 1.5;
+	line-height: 1.55;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -89,7 +62,7 @@ a:visited {
 
 :focus-visible {
 	outline: var(--focus-ring);
-	outline-offset: 2px;
+	outline-offset: 3px;
 }
 
 code,
@@ -99,6 +72,74 @@ pre {
 
 table {
 	border-collapse: collapse;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin-top: 0;
+}
+
+h1 {
+	font-family: var(--fd-font-display);
+	font-size: clamp(2.75rem, 7vw, 5.5rem);
+	font-weight: 800;
+	letter-spacing: 0.01em;
+	line-height: 0.84;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 1.05rem;
+	letter-spacing: -0.01em;
+}
+
+code,
+.fd-label {
+	font-family: var(--fd-font-mono);
+	font-size: 0.82em;
+}
+
+button,
+select {
+	font: inherit;
+}
+
+button,
+select,
+.profile-nav__tabs a {
+	border-radius: 0 !important;
+}
+
+.detail-card,
+.family-card,
+.excerpt-card,
+.chart-frame,
+.rate-stat {
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+@media (max-width: 700px) {
+	.app-main {
+		padding: var(--space-4) !important;
+	}
+
+	.chart-grid {
+		grid-template-columns: minmax(0, 1fr) !important;
+	}
+
+	.chart-frame svg {
+		max-width: none;
+	}
+
+	.families-table,
+	.failures-table,
+	.cases-table,
+	.metrics-table {
+		min-width: 640px;
+	}
 }
 
 .sr-only {

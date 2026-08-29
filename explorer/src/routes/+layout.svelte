@@ -10,9 +10,11 @@
 
 <SimBanner />
 
-<div class="app-shell">
+<a class="skip-link" href="#main-content">Skip to results</a>
+
+<div class="app-shell fd-shell">
 	<header class="app-header">
-		<a class="app-header__brand" href="{base}/">Prism <span class="app-header__tag">explorer</span></a>
+		<a class="app-header__brand fd-shell__identity" href="{base}/">Prism <span class="app-header__tag">evaluation register</span></a>
 		<div class="app-header__modes" aria-label="Evaluation modes available in this build">
 			<ModeBadge mode="fixture" active={true} />
 			<ModeBadge mode="replay" active={false} />
@@ -20,7 +22,7 @@
 		</div>
 	</header>
 
-	<main class="app-main">
+	<main id="main-content" class="app-main">
 		{@render children()}
 	</main>
 
@@ -46,20 +48,26 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-4);
-		padding: var(--space-3) var(--space-5);
-		border-bottom: 1px solid var(--color-border);
+		padding: var(--space-4) var(--space-5);
+		border-bottom: var(--fd-rule-width) solid var(--color-fg);
 		flex-wrap: wrap;
 	}
 
 	.app-header__brand {
-		font-weight: 700;
-		font-size: 1.1rem;
+		font-size: clamp(2rem, 4vw, 3rem);
+		line-height: 0.8;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
 		text-decoration: none;
 		color: var(--color-fg);
 	}
 
 	.app-header__tag {
-		font-weight: 400;
+		font-family: var(--font-mono);
+		font-size: 0.3em;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 		color: var(--color-fg-muted);
 	}
 
@@ -71,15 +79,15 @@
 
 	.app-main {
 		flex: 1;
-		padding: var(--space-5);
-		max-width: 1100px;
+		padding: var(--space-6) var(--space-5) var(--space-8);
+		max-width: 1240px;
 		width: 100%;
 		margin: 0 auto;
 	}
 
 	.app-footer {
 		padding: var(--space-4) var(--space-5);
-		border-top: 1px solid var(--color-border);
+		border-top: var(--fd-rule-width) solid var(--color-fg);
 		font-size: 0.78rem;
 		color: var(--color-fg-muted);
 	}
@@ -91,5 +99,21 @@
 	.app-footer__meta {
 		margin: 0;
 		font-family: var(--font-mono);
+	}
+
+	.skip-link {
+		position: fixed;
+		z-index: 101;
+		left: var(--space-3);
+		top: var(--space-3);
+		padding: var(--space-2) var(--space-3);
+		background: var(--fd-field-raised);
+		color: var(--color-fg);
+		border: 2px solid var(--color-fg);
+		transform: translateY(-180%);
+	}
+
+	.skip-link:focus {
+		transform: translateY(0);
 	}
 </style>
