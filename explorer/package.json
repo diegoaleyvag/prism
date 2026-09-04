@@ -9,14 +9,14 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "node scripts/copy-artifacts.mjs",
-    "build": "vite build",
+    "prepare:data": "node scripts/copy-artifacts.mjs",
+    "build": "pnpm run prepare:data && vite build",
     "build:clean": "node ../build-explorer.mjs",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check": "pnpm run prepare:data && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "check:names": "node scripts/check-no-model-names.mjs",
-    "test": "vitest run",
+    "test": "pnpm run prepare:data && vitest run",
     "test:watch": "vitest"
   },
   "devDependencies": {
