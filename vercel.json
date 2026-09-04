@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "bash vercel-install.sh",
+  "buildCommand": "export PATH=\"$HOME/.local/bin:$PATH\" && node build-explorer.mjs",
+  "outputDirectory": "explorer/build",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/200.html"
+    }
+  ]
+}

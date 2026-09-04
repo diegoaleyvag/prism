@@ -1,7 +1,7 @@
 # HANDOFF — Prism foundation vertical slice
 
-Branch: `build/foundation`. Status: foundation slice complete and green offline. Everything is
-SIMULATED — no live provider.
+Branch: `feat/five-decisions-integration`. Open PR #1 targets `build/foundation`. Status:
+foundation slice complete and green offline. Everything is SIMULATED — no live provider.
 
 ## Commands
 
@@ -14,10 +14,11 @@ uv run prism verify   runs/                         # recompute + check digests,
 uv run prism metrics  manifests/example.manifest.json --runs runs
 uv run prism export   manifests/example.manifest.json --runs runs --out artifacts
 uv run prism dataset build                          # regenerate cases + profiles + manifest
-uv run pytest                                       # 62 tests, fully offline
+uv run pytest                                       # fully offline; see collected count in output
 uv run ruff check src/ tests/ && uv run mypy        # lint + types
 
 cd explorer && pnpm install && pnpm run build && pnpm test && pnpm run check:names
+cd .. && node build-explorer.mjs                    # clean generated run/artifact/static build
 ```
 
 ## Architecture (Python, `src/prism/`)
@@ -37,6 +38,11 @@ cd explorer && pnpm install && pnpm run build && pnpm test && pnpm run check:nam
 | `cli/` | Typer CLI (`validate/run/verify/metrics/export/digest/version/dataset build`). |
 
 `explorer/` — SvelteKit static app consuming the redacted artifacts (see `docs/adr/0003`).
+`build-explorer.mjs` is the reproducible clean-root bridge: it removes generated output, executes
+the documented fixture pipeline, requires exactly eight export artifacts, then builds the explorer.
+For remote static builds, `vercel.json` pins the project to Vite, bootstraps checksum-verified
+`uv` 0.11.11 through `vercel-install.sh`, installs frozen dependencies, runs this root build
+bridge, and exposes only `explorer/build`. It intentionally defines no Python Function entrypoint.
 
 ## Data flow
 
@@ -56,7 +62,7 @@ construction (`verify_reconciliation`).
 
 ## Tests
 
-`tests/{unit,property,e2e,guardrails}` — 62 tests. Autouse socket guard blocks all network.
+`tests/{unit,property,e2e,guardrails}`. Autouse socket guard blocks all network.
 Property tests (Hypothesis) cover digest determinism, JSON round‑trips, bootstrap determinism
 + guardrail tiers, and subset reconciliation. Guardrails assert invalid manifests / duplicate
 ids / schema drift / digest tamper / name‑leak fail, and that the provider adapter is
@@ -67,7 +73,10 @@ un‑triggerable (including in CI) and imports no provider SDK.
 Everything in the repo is new (greenfield). Notable: `src/prism/**`, `data/cases/**` (24
 JSON), `data/pricing/**`, `profiles/**` (2 JSON), `manifests/example.manifest.json`,
 `tests/**`, `docs/**`, `explorer/**`, `portfolio.project.json`, `pyproject.toml`, `uv.lock`.
-Generated (gitignored): `runs/`, `artifacts/`, `explorer/static/data/`.
+Generated (gitignored): `runs/`, `artifacts/`, `explorer/static/data/`, `explorer/build/`.
+The explorer vendors a Five Decisions 1.0.0 contract snapshot under `static/five-decisions/`;
+`CONTRACT.md` records the source version and portable source hashes. `portfolio.project.json` is
+validated offline against the vendored portable schema by the guardrail suite.
 
 ## Known debt
 
@@ -75,8 +84,9 @@ Generated (gitignored): `runs/`, `artifacts/`, `explorer/static/data/`.
   Playwright browser smoke (avoids a browser download in this environment).
 - Local record immutability is by convention (content‑address + read‑only + verify), not WORM.
 - Provider adapter is a scaffold only; a real adapter is out of scope for this release.
-- `portfolio.project.json` links are `null` and status is `building` until offline
-  reproducibility + review evidence are attached (do not advance to `verified` before then).
+- `portfolio.project.json` links the GitHub repository; demo and methodology stay `null` and
+  status remains `building` until a canonical public preview is promoted (do not advance to
+  `verified` before then).
 - The name‑guard denylist is finite; extend it alongside the export module.
 
 ## Open review questions

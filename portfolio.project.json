@@ -6,12 +6,36 @@
   "decision": "When is a model good enough?",
   "learningOrigin": "2026-05",
   "buildStarted": "2026-08-13",
-  "status": "building",
-  "summary": "A reproducible workbench for evaluating task-specific model tradeoffs.",
-  "capabilities": ["synthetic evaluations", "reproducible metrics", "static result explorer"],
-  "evidence": [],
+  "status": "verified",
+  "summary": "A deterministic, simulated workbench for evaluating task-specific tradeoffs with inspectable metrics and a static evidence explorer.",
+  "capabilities": [
+    {
+      "label": "Synthetic evaluations",
+      "detail": "Runs fixed, owner-reviewed synthetic cases through deterministic fixture profiles; no live provider is available."
+    },
+    {
+      "label": "Reproducible metrics",
+      "detail": "Uses content-addressed records, deterministic aggregation, and explicit small-sample uncertainty guardrails."
+    },
+    {
+      "label": "Static result explorer",
+      "detail": "Exports eight redacted artifacts into a prerendered explorer with route-level access to aggregate and case evidence."
+    }
+  ],
+  "evidence": [
+    {
+      "type": "reproducibility",
+      "description": "The documented offline fixture run validates, executes, verifies, computes metrics, and exports the static evidence set.",
+      "reference": "README.md#five-minute-local-run"
+    },
+    {
+      "type": "integrity safeguards",
+      "description": "The threat model records simulated-only, name-guard, redaction, digest, and uncertainty protections.",
+      "reference": "docs/THREAT_MODEL.md"
+    }
+  ],
   "links": {
-    "repository": null,
+    "repository": "https://github.com/diegoaleyvag/prism",
     "demo": null,
     "methodology": null
   }

@@ -22,8 +22,8 @@
 
 <div class="profile-shell">
 	<nav class="profile-nav" aria-label="Profile sections">
-		<span class="profile-nav__current">
-			Profile: <strong>{data.profileId}</strong>
+		<span class="profile-nav__current fd-shell__label">
+			Current fixture <strong>{data.profileId}</strong>
 		</span>
 		<ul class="profile-nav__tabs">
 			{#each tabs as tab (tab.label)}
@@ -59,17 +59,18 @@
 		align-items: center;
 		gap: var(--space-4);
 		padding-bottom: var(--space-3);
-		border-bottom: 1px solid var(--color-border);
+		border-bottom: var(--fd-rule-width) solid var(--color-fg);
 	}
 
 	.profile-nav__current {
-		font-size: 0.85rem;
+		font-size: 0.75rem;
 		color: var(--color-fg-muted);
 	}
 
 	.profile-nav__tabs {
 		display: flex;
-		gap: var(--space-3);
+		flex-wrap: wrap;
+		gap: 0;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -77,19 +78,21 @@
 
 	.profile-nav__tabs a {
 		text-decoration: none;
-		padding: var(--space-1) var(--space-2);
-		border-radius: var(--radius);
+		padding: var(--space-2) var(--space-3);
 		color: var(--color-fg);
+		border-bottom: 2px solid transparent;
 	}
 
 	.profile-nav__tabs a[aria-current='page'] {
-		background: var(--color-series-1);
-		color: white;
+		background: transparent;
+		color: var(--color-fg);
 		font-weight: 600;
+		border-bottom-color: var(--fd-signal);
 	}
 
 	.profile-nav__switch {
-		font-size: 0.82rem;
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
 		color: var(--color-fg-muted);
 		display: flex;
 		gap: var(--space-2);

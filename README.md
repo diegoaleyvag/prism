@@ -50,14 +50,28 @@ uv run prism export   manifests/example.manifest.json --runs runs --out artifact
 # 2. Tests — unit, property, e2e and guardrails, fully offline
 uv run pytest
 
-# 3. Explorer — static site consuming the redacted artifacts
-cd explorer
-pnpm install --frozen-lockfile
-pnpm run build      # adapter-static strict: every route prerendered
-pnpm run preview    # open the SIMULATED result explorer
+# 3. Explorer — clean-root static build consuming exactly eight redacted artifacts
+corepack enable
+cd explorer && pnpm install --frozen-lockfile && cd ..
+node build-explorer.mjs
+# explorer/build is static; its 200.html fallback repairs unknown direct routes.
 ```
 
 Everything after `uv sync` runs **offline** — no network, no provider calls.
+`build-explorer.mjs` deletes generated `runs`, `artifacts`, explorer data, and prior static
+output before regenerating the documented fixture run. The explorer prebuild rejects missing,
+stale, or additional artifact JSON rather than retaining a committed data fallback.
+For Vercel, the root `vercel.json` explicitly selects the Vite framework so this static explorer
+is not detected as a Python Function. Its short install command runs `bash vercel-install.sh`,
+which fetches the pinned Linux `uv` 0.11.11 binary, verifies its SHA-256, synchronizes the frozen
+Python environment, and installs the pinned explorer dependencies. The Vercel build command then
+runs `node build-explorer.mjs` and publishes only `explorer/build`.
+
+The explorer vendors the Five Decisions 1.0.0 portable contract under
+`explorer/static/five-decisions/`; its source version and SHA-256 values are recorded in that
+directory's `CONTRACT.md`. `portfolio.project.json` links the GitHub repository; demo and
+methodology URLs stay unset while status remains `building` and no canonical public preview has
+been promoted.
 
 ## How it stays honest
 

@@ -43,6 +43,7 @@
 
 <section class="cases-section">
 	<h2>Cases</h2>
+	<div class="table-scroll">
 	<table class="cases-table">
 		<thead>
 			<tr>
@@ -77,6 +78,7 @@
 			{/each}
 		</tbody>
 	</table>
+	</div>
 </section>
 
 <style>
@@ -87,6 +89,10 @@
 	.hint {
 		color: var(--color-fg-muted);
 		font-size: 0.9rem;
+	}
+
+	h1 {
+		overflow-wrap: anywhere;
 	}
 
 	.cases-section {
