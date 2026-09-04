@@ -17,9 +17,11 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "check:names": "node scripts/check-no-model-names.mjs",
     "test": "pnpm run prepare:data && vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "pnpm run build && playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.70.2",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",

@@ -57,23 +57,25 @@
 		{@render children()}
 	</div>
 
-	<table class="chart-frame__fallback sr-only">
-		<caption>{title} — underlying data ({units})</caption>
-		<thead>
-			<tr>
-				<th scope="col">Series</th>
-				<th scope="col">Value</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each rows as row (row.label)}
+	<div class="chart-frame__fallback-clip sr-only">
+		<table class="chart-frame__fallback">
+			<caption>{title} — underlying data ({units})</caption>
+			<thead>
 				<tr>
-					<td>{row.label}</td>
-					<td>{row.value}</td>
+					<th scope="col">Series</th>
+					<th scope="col">Value</th>
 				</tr>
-			{/each}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{#each rows as row (row.label)}
+					<tr>
+						<td>{row.label}</td>
+						<td>{row.value}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
 
 	<p class="chart-frame__caption">
 		{caption}
@@ -90,6 +92,16 @@
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		background: var(--color-bg-raised);
+		/* Establish this figure as the containing block for the visually-hidden
+		   fallback table below, and hard-clip any box it might otherwise
+		   contribute so it can never extend this element's — or an ancestor's —
+		   scrollable overflow on narrow/mobile viewports. `overflow: clip` is
+		   preferred (no scroll container semantics); `overflow: hidden` is kept
+		   first as a fallback for engines that don't support `clip` yet, since
+		   unsupported values are ignored and the last supported one wins. */
+		position: relative;
+		overflow: hidden;
+		overflow: clip;
 	}
 
 	.chart-frame__title {
