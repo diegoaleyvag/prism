@@ -35,8 +35,8 @@
     },
     {
       "type": "production deployment",
-      "description": "C8 Git-sourced READY production; stable/immutable smoke PASS; public without protection.",
-      "reference": "https://five-decisions-prism-8opv796js-atomiczdaemons-projects.vercel.app | dpl_9eahPgN12yhuw2kKtKkkUQpmFj37 | build/foundation@7ceb20a9b4a383118d7d99f35bb0d73e8364fc2b"
+      "description": "C8 Git-sourced READY production; public without protection; stable/immutable smoke PASS; deployment dpl_9eahPgN12yhuw2kKtKkkUQpmFj37; source build/foundation@7ceb20a9b4a383118d7d99f35bb0d73e8364fc2b.",
+      "reference": "https://five-decisions-prism-8opv796js-atomiczdaemons-projects.vercel.app"
     }
   ],
   "links": {
