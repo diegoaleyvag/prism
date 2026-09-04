@@ -31,7 +31,8 @@
 		<p class="app-footer__meta">
 			manifest <code>{indexArtifact.run.manifest_id}</code> · prism {indexArtifact.run.prism_version} ·
 			review scope <code>{indexArtifact.run.review_scope}</code> · record set
-			<code>{indexArtifact.run.record_set_hash.slice(0, 19)}…</code>
+			<code>{indexArtifact.run.record_set_hash.slice(0, 19)}…</code> ·
+			<a href="https://github.com/diegoaleyvag/prism/blob/faac6b68bc2305ba8849b4cf15dc1a0dab423fce/docs/METHODOLOGY.md">Methodology</a>
 		</p>
 	</footer>
 </div>
