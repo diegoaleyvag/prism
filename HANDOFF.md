@@ -1,7 +1,7 @@
 # HANDOFF — Prism foundation vertical slice
 
-Branch: `build/foundation`. Status: foundation slice complete and green offline. Everything is
-SIMULATED — no live provider.
+Branch: `feat/five-decisions-integration`. Open PR #1 targets `build/foundation`. Status:
+foundation slice complete and green offline. Everything is SIMULATED — no live provider.
 
 ## Commands
 
@@ -14,7 +14,7 @@ uv run prism verify   runs/                         # recompute + check digests,
 uv run prism metrics  manifests/example.manifest.json --runs runs
 uv run prism export   manifests/example.manifest.json --runs runs --out artifacts
 uv run prism dataset build                          # regenerate cases + profiles + manifest
-uv run pytest                                       # 62 tests, fully offline
+uv run pytest                                       # fully offline; see collected count in output
 uv run ruff check src/ tests/ && uv run mypy        # lint + types
 
 cd explorer && pnpm install && pnpm run build && pnpm test && pnpm run check:names
@@ -62,7 +62,7 @@ construction (`verify_reconciliation`).
 
 ## Tests
 
-`tests/{unit,property,e2e,guardrails}` — 62 tests. Autouse socket guard blocks all network.
+`tests/{unit,property,e2e,guardrails}`. Autouse socket guard blocks all network.
 Property tests (Hypothesis) cover digest determinism, JSON round‑trips, bootstrap determinism
 + guardrail tiers, and subset reconciliation. Guardrails assert invalid manifests / duplicate
 ids / schema drift / digest tamper / name‑leak fail, and that the provider adapter is
@@ -84,8 +84,9 @@ validated offline against the vendored portable schema by the guardrail suite.
   Playwright browser smoke (avoids a browser download in this environment).
 - Local record immutability is by convention (content‑address + read‑only + verify), not WORM.
 - Provider adapter is a scaffold only; a real adapter is out of scope for this release.
-- `portfolio.project.json` links are `null` and status is `building` until offline
-  reproducibility + review evidence are attached (do not advance to `verified` before then).
+- `portfolio.project.json` links the GitHub repository; demo and methodology stay `null` and
+  status remains `building` until a canonical public preview is promoted (do not advance to
+  `verified` before then).
 - The name‑guard denylist is finite; extend it alongside the export module.
 
 ## Open review questions
