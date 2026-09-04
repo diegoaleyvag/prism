@@ -100,6 +100,7 @@
 	<p class="families-section__hint">
 		Each family bundles 6 cases. Click through for the per-case breakdown and CI detail.
 	</p>
+	<div class="table-scroll">
 	<table class="families-table">
 		<thead>
 			<tr>
@@ -126,6 +127,7 @@
 			{/each}
 		</tbody>
 	</table>
+	</div>
 </section>
 
 <style>

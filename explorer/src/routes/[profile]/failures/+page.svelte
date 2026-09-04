@@ -38,6 +38,7 @@
 {#if filteredRows.length === 0}
 	<p class="empty">No failing cases for this filter.</p>
 {:else}
+	<div class="table-scroll">
 	<table class="failures-table">
 		<thead>
 			<tr>
@@ -64,6 +65,7 @@
 			{/each}
 		</tbody>
 	</table>
+	</div>
 {/if}
 
 <style>

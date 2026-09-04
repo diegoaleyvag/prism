@@ -88,6 +88,7 @@
 			items={items(bucket)}
 		/>
 
+		<div class="table-scroll">
 		<table class="metrics-table">
 			<caption class="visually-hidden">{bucket.title} metric detail</caption>
 			<thead>
@@ -115,6 +116,7 @@
 				{/each}
 			</tbody>
 		</table>
+		</div>
 	</section>
 {/each}
 

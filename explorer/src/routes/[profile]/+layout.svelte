@@ -69,6 +69,7 @@
 
 	.profile-nav__tabs {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0;
 		list-style: none;
 		margin: 0;

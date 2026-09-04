@@ -85,6 +85,7 @@
 <style>
 	.chart-frame {
 		margin: 0;
+		min-width: 0;
 		padding: var(--space-4);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
@@ -99,6 +100,12 @@
 	.chart-frame__body {
 		width: 100%;
 		overflow-x: auto;
+	}
+
+	.chart-frame__fallback {
+		table-layout: fixed;
+		white-space: normal;
+		overflow-wrap: anywhere;
 	}
 
 	.chart-frame__caption {

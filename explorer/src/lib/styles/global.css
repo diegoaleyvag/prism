@@ -74,6 +74,11 @@ table {
 	border-collapse: collapse;
 }
 
+.table-scroll {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
 h1,
 h2,
 h3,
