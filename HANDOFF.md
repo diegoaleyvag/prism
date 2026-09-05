@@ -1,5 +1,15 @@
 # HANDOFF — Prism foundation vertical slice
 
+**Status boundary (2026-09-05):** this document is a point-in-time snapshot of the
+`feat/five-decisions-integration` foundation slice. `PR #1` referenced below has since merged
+to `build/foundation`, and `portfolio.project.json`'s status has since advanced from `building`
+to **`released`**, with `demo` and `methodology` links populated and a promoted production
+deployment recorded as evidence — see [`README.md`](README.md) for the current state. Kept
+verbatim below as historical record, not rewritten. Everything here remains true of that
+foundation slice: it was, and remains, SIMULATED — no live provider.
+
+---
+
 Branch: `feat/five-decisions-integration`. Open PR #1 targets `build/foundation`. Status:
 foundation slice complete and green offline. Everything is SIMULATED — no live provider.
 

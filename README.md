@@ -69,9 +69,11 @@ runs `node build-explorer.mjs` and publishes only `explorer/build`.
 
 The explorer vendors the Five Decisions 1.0.0 portable contract under
 `explorer/static/five-decisions/`; its source version and SHA-256 values are recorded in that
-directory's `CONTRACT.md`. `portfolio.project.json` links the GitHub repository; demo and
-methodology URLs stay unset while status remains `building` and no canonical public preview has
-been promoted.
+directory's `CONTRACT.md`. **Current status: `released`.** `portfolio.project.json` links the
+GitHub repository, a canonical demo (the static explorer above), and a pinned `docs/METHODOLOGY.md`
+permalink; a promoted, immutable production deployment is recorded as evidence. (Earlier in this
+repository's history, before that promotion, status was `building` with `demo`/`methodology` left
+unset — see [`HANDOFF.md`](HANDOFF.md) for that foundation-slice snapshot.)
 
 ## How it stays honest
 
